@@ -31,5 +31,13 @@ has dispatcher => (
     required => 1,
 );
 
+sub BUILD {
+    my $self = shift;
+    if ($self->engine->interface->has_incoming_callback) {
+        confess "When using " . __PACKAGE__ . ", do not specify an incoming_callback";
+    }
+
+}
+
 1;
 
