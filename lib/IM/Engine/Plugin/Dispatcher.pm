@@ -40,6 +40,12 @@ sub BUILD {
     $self->engine->interface->incoming_callback(
         sub { $self->incoming(@_) },
     );
+
+    $self->engine->each_plugin(
+        role       => 'AugmentsDispatcher',
+        method     => 'augment_dispatcher',
+        dispatcher => $self->dispatcher,
+    );
 }
 
 sub incoming {
