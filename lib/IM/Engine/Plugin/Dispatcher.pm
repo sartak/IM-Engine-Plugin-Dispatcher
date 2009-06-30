@@ -49,6 +49,8 @@ sub incoming {
     my $message = $self->dispatch($incoming, @_);
     return $message if blessed $message;
 
+    return if !defined($message);
+
     return $incoming->reply(
         message => $message,
     );
