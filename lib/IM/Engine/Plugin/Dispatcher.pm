@@ -55,7 +55,7 @@ sub incoming {
     unless ($self->has_augmented_dispatcher) {
         $self->has_augmented_dispatcher(1);
         $self->engine->each_plugin(
-            role       => 'AugmentsDispatcher',
+            role       => 'Dispatcher::AugmentsDispatcher',
             method     => 'augment_dispatcher',
             dispatcher => $self->dispatcher,
         );
@@ -79,7 +79,7 @@ sub dispatch {
     my $dispatch = $dispatcher->dispatch($incoming->message);
 
     $self->engine->plugin_relay(
-        role              => 'ChangesDispatch',
+        role              => 'Dispatcher::ChangesDispatch',
         method            => 'change_dispatch',
         baton             => $dispatch,
         incoming          => $incoming,
@@ -87,7 +87,7 @@ sub dispatch {
     );
 
     my $message = $self->engine->plugin_default(
-        role     => 'ShortcutsDispatch',
+        role     => 'Dispatcher::ShortcutsDispatch',
         method   => 'shortcut_dispatch',
         incoming => $incoming,
         dispatch => $dispatch,
