@@ -1,8 +1,8 @@
-package IM::Engine::Plugin::404;
+package IM::Engine::Plugin::Dispatcher::404;
 use Moose;
 use Moose::Util::TypeConstraints;
 extends 'IM::Engine::Plugin';
-with 'IM::Engine::Plugin::ShortcutsDispatch';
+with 'IM::Engine::Plugin::Dispatcher::ShortcutsDispatch';
 
 sub shortcut_dispatch {
     my $self = shift;

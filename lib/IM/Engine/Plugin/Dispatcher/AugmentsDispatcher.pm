@@ -1,6 +1,6 @@
-package IM::Engine::Plugin::AugmentsDispatcher;
+package IM::Engine::Plugin::Dispatcher::AugmentsDispatcher;
 use Moose::Role;
-with 'IM::Engine::Plugin::RequiresDispatcherPlugin';
+with 'IM::Engine::Plugin::Dispatcher::RequiresDispatcherPlugin';
 
 requires 'new_rules';
 

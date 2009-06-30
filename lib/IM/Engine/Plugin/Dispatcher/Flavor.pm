@@ -1,8 +1,8 @@
-package IM::Engine::Plugin::Flavor;
+package IM::Engine::Plugin::Dispatcher::Flavor;
 use Moose;
 use Moose::Util::TypeConstraints;
 extends 'IM::Engine::Plugin';
-with 'IM::Engine::Plugin::AugmentsDispatcher';
+with 'IM::Engine::Plugin::Dispatcher::AugmentsDispatcher';
 
 my @greetings = (
     sub { "Hi " . shift->sender->name . "!" },
