@@ -59,7 +59,7 @@ sub dispatch {
     my $incoming   = shift;
     my $dispatcher = $self->dispatcher;
 
-    my $dispatch = $dispatcher->dispatch($incoming, @_);
+    my $dispatch = $dispatcher->dispatch($incoming->message);
 
     $self->plugin_relay(
         role              => 'ChangesDispatch',
@@ -78,7 +78,7 @@ sub dispatch {
 
     return $message if $message;
 
-    return $dispatch->run;
+    return $dispatch->run($incoming, @_);
 }
 
 1;
