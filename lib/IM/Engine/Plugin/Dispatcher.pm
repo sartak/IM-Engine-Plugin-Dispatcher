@@ -39,10 +39,22 @@ sub BUILD {
     }
 
     my $weakself = $self;
-    $self->engine->interface->_set_incoming_callback(
-        sub { $weakself->dispatch(@_) },
+    $self->engine->interface->incoming_callback(
+        sub { $weakself->incoming(@_) },
     );
     weaken($weakself);
+}
+
+sub incoming {
+    my $self     = shift;
+    my $incoming = shift;
+
+    my $message = $self->dispatch($incoming, @_);
+    return $message if blessed $message;
+
+    return $incoming->reply(
+        message => $message,
+    );
 }
 
 sub dispatch {
