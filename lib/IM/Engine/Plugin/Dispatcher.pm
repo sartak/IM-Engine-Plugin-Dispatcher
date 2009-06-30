@@ -1,7 +1,6 @@
 package IM::Engine::Plugin::Dispatcher;
 use Moose;
 use Moose::Util::TypeConstraints;
-use Scalar::Util 'weaken';
 extends 'IM::Engine::Plugin';
 
 subtype 'IM::Engine::Plugin::Dispatcher::Dispatcher'
@@ -38,11 +37,9 @@ sub BUILD {
         confess "When using " . __PACKAGE__ . ", do not specify an incoming_callback";
     }
 
-    my $weakself = $self;
     $self->engine->interface->incoming_callback(
-        sub { $weakself->incoming(@_) },
+        sub { $self->incoming(@_) },
     );
-    weaken($weakself);
 }
 
 sub incoming {
