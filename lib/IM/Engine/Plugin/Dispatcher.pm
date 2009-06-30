@@ -58,6 +58,30 @@ sub incoming {
 }
 
 sub dispatch {
+    my $self       = shift;
+    my $incoming   = shift;
+    my $dispatcher = $self->dispatcher;
+
+    my $dispatch = $dispatcher->dispatch($incoming, @_);
+
+    $self->plugin_relay(
+        role              => 'ChangesDispatch',
+        method            => 'change_dispatch',
+        baton             => $dispatch,
+        incoming          => $incoming,
+        original_dispatch => $dispatch,
+    );
+
+    my $message = $self->plugin_default(
+        role     => 'ShortcutsDispatch',
+        method   => 'shortcut_dispatch',
+        incoming => $incoming,
+        dispatch => $dispatch,
+    );
+
+    return $message if $message;
+
+    return $dispatch->run;
 }
 
 1;
