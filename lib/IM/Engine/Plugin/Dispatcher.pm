@@ -31,6 +31,12 @@ has dispatcher => (
     required => 1,
 );
 
+has has_augmented_dispatcher => (
+    is      => 'rw',
+    isa     => 'Bool',
+    default => 0,
+);
+
 sub BUILD {
     my $self = shift;
     if ($self->engine->interface->has_incoming_callback) {
@@ -40,17 +46,20 @@ sub BUILD {
     $self->engine->interface->incoming_callback(
         sub { $self->incoming(@_) },
     );
-
-    $self->engine->each_plugin(
-        role       => 'AugmentsDispatcher',
-        method     => 'augment_dispatcher',
-        dispatcher => $self->dispatcher,
-    );
 }
 
 sub incoming {
     my $self     = shift;
     my $incoming = shift;
+
+    unless ($self->has_augmented_dispatcher) {
+        $self->has_augmented_dispatcher(1);
+        $self->engine->each_plugin(
+            role       => 'AugmentsDispatcher',
+            method     => 'augment_dispatcher',
+            dispatcher => $self->dispatcher,
+        );
+    }
 
     my $message = $self->dispatch($incoming, @_);
     return $message if blessed $message;
