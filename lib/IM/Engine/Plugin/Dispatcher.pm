@@ -61,7 +61,7 @@ sub dispatch {
 
     my $dispatch = $dispatcher->dispatch($incoming->message);
 
-    $self->plugin_relay(
+    $self->engine->plugin_relay(
         role              => 'ChangesDispatch',
         method            => 'change_dispatch',
         baton             => $dispatch,
@@ -69,7 +69,7 @@ sub dispatch {
         original_dispatch => $dispatch,
     );
 
-    my $message = $self->plugin_default(
+    my $message = $self->engine->plugin_default(
         role     => 'ShortcutsDispatch',
         method   => 'shortcut_dispatch',
         incoming => $incoming,
