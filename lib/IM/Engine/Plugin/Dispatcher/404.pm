@@ -1,6 +1,5 @@
 package IM::Engine::Plugin::Dispatcher::404;
 use Moose;
-use Moose::Util::TypeConstraints;
 extends 'IM::Engine::Plugin';
 with 'IM::Engine::Plugin::Dispatcher::ShortcutsDispatch';
 
@@ -12,6 +11,9 @@ sub shortcut_dispatch {
 
     return "Unknown command.";
 }
+
+__PACKAGE__->meta->make_immutable;
+no Moose;
 
 1;
 

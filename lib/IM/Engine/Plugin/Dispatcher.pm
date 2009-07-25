@@ -98,5 +98,9 @@ sub dispatch {
     return $dispatch->run($incoming, @_);
 }
 
+__PACKAGE__->meta->make_immutable;
+no Moose;
+no Moose::Util::TypeConstraints;
+
 1;
 
