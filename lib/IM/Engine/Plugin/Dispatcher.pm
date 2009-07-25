@@ -76,7 +76,7 @@ sub dispatch {
     my $incoming   = shift;
     my $dispatcher = $self->dispatcher;
 
-    my $dispatch = $dispatcher->dispatch($incoming->message);
+    my $dispatch = $dispatcher->dispatch($incoming->plaintext);
 
     $self->engine->plugin_relay(
         role              => 'Dispatcher::ChangesDispatch',
