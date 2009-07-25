@@ -1,6 +1,5 @@
 package IM::Engine::Plugin::Dispatcher::Flavor;
 use Moose;
-use Moose::Util::TypeConstraints;
 extends 'IM::Engine::Plugin';
 with 'IM::Engine::Plugin::Dispatcher::AugmentsDispatcher';
 
@@ -38,6 +37,9 @@ sub new_rules {
         ),
     );
 }
+
+__PACKAGE__->meta->make_immutable;
+no Moose;
 
 1;
 
