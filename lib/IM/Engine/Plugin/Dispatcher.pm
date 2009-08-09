@@ -14,16 +14,10 @@ coerce 'IM::Engine::Plugin::Dispatcher::Dispatcher'
         my $class = $_;
         Class::MOP::load_class($class);
 
-        # A subclass of Path::Dispatcher
-        if ($class->can('new')) {
-            return $class->new;
-        }
-        # A sybclass of Path::Dispatcher::Declarative
-        else {
+        if ($class->isa('Path::Dispatcher::Declarative')) {
             return $class->dispatcher;
         }
-
-        # would be nice to improve this...
+        return $class->new;
     };
 
 has dispatcher => (
