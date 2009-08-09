@@ -3,6 +3,8 @@ use Moose;
 use Moose::Util::TypeConstraints;
 extends 'IM::Engine::Plugin';
 
+our $VERSION = '0.01';
+
 subtype 'IM::Engine::Plugin::Dispatcher::Dispatcher'
      => as 'Path::Dispatcher';
 
