@@ -136,6 +136,10 @@ L<Path::Dispatcher> is a pretty good way of running some code based on some
 string input. My personal use case for L<Path::Dispatcher> was for IM or IRC
 bots, so this is me eating my own dog food.
 
+This module is meant to be extended to improve L<Path::Dispatcher> +
+L<IM::Engine> goodness. For example, the L<IM::Engine::Plugin::Dispatcher::404>
+plugin extends your dispatcher with a 404 (command not found) error.
+
 It is currently alpha quality with serious features missing and is rife with
 horrible bugs. I'm releasing it under the "release early, release often"
 doctrine. Backwards compatibility may be broken in subsequent releases. Or by
