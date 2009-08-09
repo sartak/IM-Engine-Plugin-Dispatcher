@@ -104,3 +104,63 @@ no Moose::Util::TypeConstraints;
 
 1;
 
+__END__
+
+=encoding utf8
+
+=head1 NAME
+
+IM::Engine::Plugin::Dispatcher - Path::Dispatcher ♥  IM::Engine
+
+=head1 SYNOPSIS
+
+    package TimeBot;
+    use Path::Dispatcher::Declarative -base;
+
+    on qr/date|time/ => sub { localtime };
+
+    IM::Engine->new(
+        interface => {
+            protocol => 'REPL',
+        },
+        plugins => {
+            Dispatcher => {
+                dispatcher => 'TimeBot',
+            },
+        },
+    )->run;
+
+=head1 DESCRIPTION
+
+L<Path::Dispatcher> is a pretty good way of running some code based on some
+string input. My personal use case for L<Path::Dispatcher> was for IM or IRC
+bots, so this is me eating my own dog food.
+
+It is currently alpha quality with serious features missing and is rife with
+horrible bugs. I'm releasing it under the "release early, release often"
+doctrine. Backwards compatibility may be broken in subsequent releases. Or by
+L<IM::Engine> releases!
+
+=head1 AUTHOR
+
+Shawn M Moore, C<sartak@gmail.com>
+
+=head1 SEE ALSO
+
+=over 4
+
+=item L<IM::Engine>
+
+=item L<Path::Dispatcher>
+
+=back
+
+=head1 COPYRIGHT AND LICENSE
+
+Copyright 2009 Shawn M Moore.
+
+This program is free software; you can redistribute it and/or modify it
+under the same terms as Perl itself.
+
+=cut
+
