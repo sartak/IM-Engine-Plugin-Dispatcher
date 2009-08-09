@@ -17,3 +17,16 @@ no Moose;
 
 1;
 
+__END__
+
+=head1 NAME
+
+IM::Engine::Plugin::Dispatcher::404
+
+=head1 DESCRIPTION
+
+This plugin simply extends your dispatcher with a 404 (command not found)
+error.
+
+=cut
+
