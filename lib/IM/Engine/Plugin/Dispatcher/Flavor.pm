@@ -43,3 +43,17 @@ no Moose;
 
 1;
 
+__END__
+
+=head1 NAME
+
+IM::Engine::Plugin::Dispatcher::Flavor
+
+=head1 DESCRIPTION
+
+This plugin extends your dispatcher with silly flavor messages. This plugin
+responds to messages like "hello", "hi", "bye", "thanks", etc. with similar
+sentiments.
+
+=cut
+
