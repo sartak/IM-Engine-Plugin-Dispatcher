@@ -3,13 +3,19 @@ use Moose;
 extends 'IM::Engine::Plugin';
 with 'IM::Engine::Plugin::Dispatcher::ShortcutsDispatch';
 
+has message => (
+    is      => 'rw',
+    isa     => 'Str',
+    default => 'Unknown command.',
+);
+
 sub shortcut_dispatch {
     my $self = shift;
     my $args = shift;
 
     return if $args->{dispatch}->has_matches;
 
-    return "Unknown command.";
+    return $self->message;
 }
 
 __PACKAGE__->meta->make_immutable;
