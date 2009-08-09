@@ -48,8 +48,7 @@ sub post_initialization {
     my $self = shift;
     $self->engine->each_plugin(
         role       => 'Dispatcher::AugmentsDispatcher',
-        method     => 'augment_dispatcher',
-        dispatcher => $self->dispatcher,
+        callback   => sub { shift->augment_dispatcher($self->dispatcher) },
     );
 }
 
