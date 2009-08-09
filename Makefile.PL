@@ -5,7 +5,7 @@ all_from 'lib/IM/Engine/Plugin/Dispatcher.pm';
 githubmeta;
 
 requires 'Moose';
-requires 'IM::Engine' => 0.02;
+requires 'IM::Engine' => 0.03;
 requires 'Path::Dispatcher' => 0.12;
 
 tests('t/*.t t/*/*.t');
