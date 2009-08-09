@@ -4,7 +4,7 @@ use Moose;
 use Moose::Util::TypeConstraints;
 extends 'IM::Engine::Plugin';
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 subtype 'IM::Engine::Plugin::Dispatcher::Dispatcher'
      => as 'Path::Dispatcher';

@@ -1,5 +1,7 @@
 IM::Engine::Plugin::Dispatcher changes
 
+0.03
+
 0.02  2009-08-09
     Parameterize the 404 message
 
