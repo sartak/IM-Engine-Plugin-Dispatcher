@@ -30,11 +30,14 @@ has dispatcher => (
 
 sub BUILD {
     my $self = shift;
-    if ($self->engine->interface->has_incoming_callback) {
+    my $interface = $self->engine->interface;
+
+    if ($interface->has_incoming_callback) {
         confess "When using " . __PACKAGE__ . ", do not specify an incoming_callback";
     }
 
-    $self->engine->interface->incoming_callback(
+    # This isn't a memory leak because $self->engine is already weak
+    $interface->incoming_callback(
         sub { $self->incoming(@_) },
     );
 }
