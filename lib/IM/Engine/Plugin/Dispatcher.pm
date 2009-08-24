@@ -113,11 +113,11 @@ IM::Engine::Plugin::Dispatcher - Path::Dispatcher ♥  IM::Engine
         interface => {
             protocol => 'REPL',
         },
-        plugins => {
+        plugins => [
             Dispatcher => {
                 dispatcher => 'TimeBot',
             },
-        },
+        ],
     )->run;
 
 =head1 DESCRIPTION
